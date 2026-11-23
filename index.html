@@ -766,30 +766,30 @@
       <p>목표 관리 기간과 4대 카테고리 예산을 입력하세요.</p>
     </div>
 
-    <form id="setupForm" class="card" onsubmit="handleSetupSubmit(event)">
+    <form id="setupForm" class="card" onsubmit="handleSetupSubmit(event)" novalidate>
       <div class="form-group">
         <label class="form-label" for="setupPeriod">관리 기간 (일)</label>
-        <input type="number" id="setupPeriod" class="input-field" value="7" min="1" max="90" required>
+        <input type="number" id="setupPeriod" class="input-field" value="7" min="1" max="90" placeholder="기본 7일">
       </div>
 
       <div class="form-group">
         <label class="form-label" for="budgetFood">🍚 식비 예산 (원)</label>
-        <input type="number" id="budgetFood" class="input-field budget-input" placeholder="예: 350000" min="0" step="1000" required>
+        <input type="number" id="budgetFood" class="input-field budget-input" placeholder="원하는 금액만 입력 (선택)" min="0" step="any">
       </div>
 
       <div class="form-group">
         <label class="form-label" for="budgetTransport">🚌 교통비 예산 (원)</label>
-        <input type="number" id="budgetTransport" class="input-field budget-input" placeholder="예: 70000" min="0" step="1000" required>
+        <input type="number" id="budgetTransport" class="input-field budget-input" placeholder="원하는 금액만 입력 (선택)" min="0" step="any">
       </div>
 
       <div class="form-group">
         <label class="form-label" for="budgetShopping">🛍️ 쇼핑 예산 (원)</label>
-        <input type="number" id="budgetShopping" class="input-field budget-input" placeholder="예: 140000" min="0" step="1000" required>
+        <input type="number" id="budgetShopping" class="input-field budget-input" placeholder="원하는 금액만 입력 (선택)" min="0" step="any">
       </div>
 
       <div class="form-group">
         <label class="form-label" for="budgetEtc">📦 기타 생활비 예산 (원)</label>
-        <input type="number" id="budgetEtc" class="input-field budget-input" placeholder="예: 140000" min="0" step="1000" required>
+        <input type="number" id="budgetEtc" class="input-field budget-input" placeholder="원하는 금액만 입력 (선택)" min="0" step="any">
       </div>
 
       <!-- 실시간 총예산 자동 합산 박스 -->
@@ -798,7 +798,7 @@
         <span class="total-calc-amount" id="setupTotalDisplay">0원</span>
       </div>
 
-      <div id="setupErrorMsg" class="form-error-msg">모든 항목에 올바른 예산 금액을 입력해 주세요.</div>
+      <div id="setupErrorMsg" class="form-error-msg">최소 1개 이상의 카테고리에 예산 금액을 입력해 주세요.</div>
 
       <button type="submit" class="btn-submit" style="margin-top: 10px;">플래너 시작하기</button>
     </form>
@@ -849,10 +849,10 @@
       <div class="section-title-row">
         <h3 class="section-title">지출 기록 등록</h3>
       </div>
-      <form id="expenseForm" onsubmit="handleExpenseSubmit(event)">
+      <form id="expenseForm" onsubmit="handleExpenseSubmit(event)" novalidate>
         <div class="form-group">
           <label class="form-label" for="expenseAmount">지출 금액 (원)</label>
-          <input type="number" id="expenseAmount" class="input-field" placeholder="예: 12000" min="1" step="100" required>
+          <input type="number" id="expenseAmount" class="input-field" placeholder="금액 입력 (예: 12500)" min="1" step="any" required>
         </div>
 
         <div class="form-group">
@@ -909,26 +909,26 @@
   <div class="modal-overlay" id="reconfigModal">
     <div class="modal-card">
       <h3 class="modal-title">⚙️ 예산 및 기간 재조율</h3>
-      <form id="reconfigForm" onsubmit="handleReconfigSubmit(event)">
+      <form id="reconfigForm" onsubmit="handleReconfigSubmit(event)" novalidate>
         <div class="form-group">
           <label class="form-label" for="reconfigDays">새로운 남은 일수 (일)</label>
-          <input type="number" id="reconfigDays" class="input-field" min="1" max="90" required>
+          <input type="number" id="reconfigDays" class="input-field" min="1" max="90" placeholder="기본 7일">
         </div>
         <div class="form-group">
           <label class="form-label" for="reconfigFood">식비 추가/수정 예산 (원)</label>
-          <input type="number" id="reconfigFood" class="input-field" min="0" step="1000" required>
+          <input type="number" id="reconfigFood" class="input-field" min="0" step="any">
         </div>
         <div class="form-group">
           <label class="form-label" for="reconfigTransport">교통비 추가/수정 예산 (원)</label>
-          <input type="number" id="reconfigTransport" class="input-field" min="0" step="1000" required>
+          <input type="number" id="reconfigTransport" class="input-field" min="0" step="any">
         </div>
         <div class="form-group">
           <label class="form-label" for="reconfigShopping">쇼핑 추가/수정 예산 (원)</label>
-          <input type="number" id="reconfigShopping" class="input-field" min="0" step="1000" required>
+          <input type="number" id="reconfigShopping" class="input-field" min="0" step="any">
         </div>
         <div class="form-group">
           <label class="form-label" for="reconfigEtc">기타 추가/수정 예산 (원)</label>
-          <input type="number" id="reconfigEtc" class="input-field" min="0" step="1000" required>
+          <input type="number" id="reconfigEtc" class="input-field" min="0" step="any">
         </div>
         <div class="modal-btn-group" style="margin-top: 10px;">
           <button type="button" class="btn-secondary" onclick="closeReconfigModal()">취소</button>
@@ -1171,16 +1171,19 @@
 
   function handleSetupSubmit(e) {
     e.preventDefault();
-    const period = parseInt(document.getElementById('setupPeriod').value, 10);
-    const food = parseInt(document.getElementById('budgetFood').value, 10);
-    const trans = parseInt(document.getElementById('budgetTransport').value, 10);
-    const shop = parseInt(document.getElementById('budgetShopping').value, 10);
-    const etc = parseInt(document.getElementById('budgetEtc').value, 10);
+    let period = parseInt(document.getElementById('setupPeriod').value, 10);
+    if (isNaN(period) || period <= 0) period = 7;
 
+    const food = Math.max(0, parseInt(document.getElementById('budgetFood').value, 10) || 0);
+    const trans = Math.max(0, parseInt(document.getElementById('budgetTransport').value, 10) || 0);
+    const shop = Math.max(0, parseInt(document.getElementById('budgetShopping').value, 10) || 0);
+    const etc = Math.max(0, parseInt(document.getElementById('budgetEtc').value, 10) || 0);
+
+    const total = food + trans + shop + etc;
     const errorMsg = document.getElementById('setupErrorMsg');
 
-    if (isNaN(period) || period <= 0 || isNaN(food) || food <= 0 ||
-        isNaN(trans) || trans < 0 || isNaN(shop) || shop < 0 || isNaN(etc) || etc < 0) {
+    if (total <= 0) {
+      errorMsg.innerText = '최소 1개 이상의 카테고리에 예산을 입력해 주세요.';
       errorMsg.style.display = 'block';
       return;
     }
@@ -1217,6 +1220,7 @@
     const memo = memoInput.value.trim() || '지출 항목';
 
     if (isNaN(amount) || amount <= 0 || !selectedExpenseCat) {
+      errorMsg.innerText = '올바른 지출 금액(1원 이상)을 입력해 주세요.';
       errorMsg.style.display = 'block';
       return;
     }
@@ -1473,17 +1477,13 @@
 
   function handleReconfigSubmit(e) {
     e.preventDefault();
-    const days = parseInt(document.getElementById('reconfigDays').value, 10);
-    const food = parseInt(document.getElementById('reconfigFood').value, 10);
-    const trans = parseInt(document.getElementById('reconfigTransport').value, 10);
-    const shop = parseInt(document.getElementById('reconfigShopping').value, 10);
-    const etc = parseInt(document.getElementById('reconfigEtc').value, 10);
+    let days = parseInt(document.getElementById('reconfigDays').value, 10);
+    if (isNaN(days) || days <= 0) days = 7;
 
-    if (isNaN(days) || days <= 0 || isNaN(food) || food < 0 ||
-        isNaN(trans) || trans < 0 || isNaN(shop) || shop < 0 || isNaN(etc) || etc < 0) {
-      alert('올바른 일수와 예산 금액을 입력해 주세요.');
-      return;
-    }
+    const food = Math.max(0, parseInt(document.getElementById('reconfigFood').value, 10) || 0);
+    const trans = Math.max(0, parseInt(document.getElementById('reconfigTransport').value, 10) || 0);
+    const shop = Math.max(0, parseInt(document.getElementById('reconfigShopping').value, 10) || 0);
+    const etc = Math.max(0, parseInt(document.getElementById('reconfigEtc').value, 10) || 0);
 
     state.period = (state.currentDay - 1) + days;
     state.categories.food.budget = food;
